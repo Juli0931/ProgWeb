@@ -1,0 +1,29 @@
+Creating a new project with Vite and React:
+
+npm create vite@latest 
+Select Vanilla and Javascript
+cd FileName 
+npm i 
+npm install react react-dom
+npm fund
+npm i @vitejs/plugin-react
+Create a vite.config.js file (make sure its at package.json's level) and setup the config:
+    import { defineConfig } from 'vite'
+    import react from '@vitejs/plugin-react'
+
+    export default defineConfig({
+        plugins: [react()],
+    })
+npm run dev
+
+***
+Change main.js to main.jsx and src="main.js" a src="main.jsx"
+In main.jsx, setup the root:
+    import React from 'react';
+    import { createRoot } from 'react-dom/client';
+    import { App } from './src/App';
+
+    const rootElement = document.getElementById('app');
+    const root = createRoot(rootElement);
+    root.render(<App />);
+Create folder for components, export and use in the App.jsx file.
