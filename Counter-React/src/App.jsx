@@ -19,12 +19,14 @@ export function App() {
 
   return (
     <div className='App'>
-      <Header/>
-      <Counter count={count}/>
-      <div className='ButtonsDiv'>
-        <Button tittle= 'Increase' handle={Increment}/>
-        <Button tittle= 'Reset' handle={Reset}/>
-        <Button tittle= 'Decrease' handle={Decrement}/>
+      <div className="ContainerApp">
+        <Header/>
+        <Counter count={count}/>
+        <div className='ButtonsDiv'>
+          <Button tittle= 'Increase' handle={Increment}/>
+          <Button tittle= 'Reset' handle={Reset}/>
+          <Button tittle= 'Decrease' handle={Decrement}/>
+        </div>
       </div>
       <Footer/>
     </div>

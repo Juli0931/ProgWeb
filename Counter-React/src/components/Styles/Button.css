@@ -1,14 +1,14 @@
 Button {
-  padding: 0.5rem 1rem;
-  font-size: 1rem;
-  background-color: #ffffff;
-  color: #0D0E12;
+  background-color: #f0f0f0; 
   border: none;
-  border-radius: 20px;
-  cursor: pointer;
+  padding: 15px 30px; 
+  border-radius: 10px; 
+  box-shadow: inset 5px 5px 10px rgba(0, 0, 0, 0.1), inset -5px -5px 10px rgba(255, 255, 255, 0.5), 5px 5px 10px rgba(0, 0, 0, 0.1); /* Neumorphism shadows */
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
   
 Button:hover {
-  background-color: #C9FC33;
+  color: #ffff;
+  background-color: #631ea0;
 }
   

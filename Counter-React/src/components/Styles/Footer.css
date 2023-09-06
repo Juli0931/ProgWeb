@@ -1,5 +1,4 @@
 h3 {
-  background-color: #333;
   color: #fff;
   font-size: 0.8rem;
   padding: 1rem;
@@ -7,4 +6,7 @@ h3 {
   text-align: center;
   position: fixed;
   bottom: 0;
+  background:rgba(255, 255, 255, 0.038); 
+  backdrop-filter: blur(10px); 
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
