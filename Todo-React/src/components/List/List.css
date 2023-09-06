@@ -1,0 +1,66 @@
+.list{
+  background-color: #e0e6e8;
+  border-radius: 20px ;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 1.6rem 1rem;
+}
+
+.list-item{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 2rem;
+}
+
+.containerList {
+  --input-focus: #2d8cf0;
+  --input-out-of-focus: #ccc;
+  --bg-color: #fff;
+  --bg-color-alt: #666;
+  --main-color: #323232;
+  position: relative;
+  cursor: pointer;
+}
+
+.containerList input {
+  position: absolute;
+  opacity: 0;
+}
+
+.checkmark {
+  margin-top: 15px;
+  width: 25px;
+  height: 25px;
+  position: relative;
+  top: 0;
+  left: 0;
+  border: 2px solid var(--main-color);
+  border-radius: 5px;
+  box-shadow: 4px 4px var(--main-color);
+  background-color: var(--input-out-of-focus);
+  transition: all 0.3s;
+}
+
+.containerList input:checked ~ .checkmark {
+  background-color: var(--input-focus);
+}
+
+.checkmark:after {
+  content: "";
+  width: 7px;
+  height: 15px;
+  position: absolute;
+  top: 2px;
+  left: 8px;
+  display: none;
+  border: solid var(--bg-color);
+  border-width: 0 2.5px 2.5px 0;
+  transform: rotate(45deg);
+}
+
+.containerList input:checked ~ .checkmark:after {
+  display: block;
+}
