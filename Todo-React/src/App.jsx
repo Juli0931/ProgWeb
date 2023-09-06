@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Form, List, Filter } from './components'
 
+// TODO: Check the handleChange
 export default function App () {
   const [todos, setTodos] = useState([])
   const [filter, setFilter] = useState('all')
@@ -54,7 +55,7 @@ export default function App () {
 
   return (
     <>
-            <h1>Todo List</h1>
+      <h1>Todo List</h1>
       <div className='container'>
         <header className='header'>
           <Form onSubmit={createTodo} />
