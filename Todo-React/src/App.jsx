@@ -1,8 +1,6 @@
 import { useState } from 'react'
 import { Form, List, Filter } from './components'
 
-//TODO: Correct the handleFilterChange
-
 export default function App () {
   const [todos, setTodos] = useState([])
   const [filter, setFilter] = useState('all')
@@ -29,7 +27,7 @@ export default function App () {
     const newTodo = {
       id: crypto.randomUUID(),
       title,
-      complete: false
+      completed: false
     }
     setTodos(prevState =>
       [...prevState, newTodo])
@@ -39,7 +37,7 @@ export default function App () {
 
   const handleToggle = (data) => {
     const updatedList = todos.map((item) =>
-      item.id === data.id ? { ...item, complete: data.complete } : item
+      item.id === data.id ? { ...item, completed: data.completed } : item
     );
     setTodos(updatedList); 
   };
@@ -53,6 +51,13 @@ export default function App () {
     console.log(filterValue)
     setFilter(filterValue)
   }
+
+  const filteredTodos = todos.filter((todo) => {
+    if (filter === 'completed') {
+      return todo.completed
+    } else if (filter === 'pending') {
+      return !todo.completed
+    } return todo})
 
   return (
     <>
@@ -69,7 +74,7 @@ export default function App () {
         <main>
           {
            hasTodos
-             ? <List list={todos} onToggle={handleToggle} onDelete={handleDelete}/>
+             ? <List list={filteredTodos} onToggle={handleToggle} onDelete={handleDelete}/>
              : <p>There are no tasks to show yet</p>
           }
 
@@ -78,3 +83,5 @@ export default function App () {
     </>
   )
 }
+
+//TODO: Create a footer components that shows the number of completed tasks (x of y) and a btn to delete all the completed.

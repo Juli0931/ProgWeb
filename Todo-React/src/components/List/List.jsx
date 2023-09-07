@@ -20,11 +20,11 @@ export function List ({list, onToggle, onDelete}) {
 }
 
 export function ListItem({todo, onToggle, onDelete}) {
-  const {id, title, complete} = todo
+  const {id, title, completed} = todo
 
   const handleChange = ({target}) => {
     const {checked} = target;
-    onToggle({id, complete: checked})
+    onToggle({id, completed: checked})
   }
 
   const handleDelete = () =>{
@@ -36,17 +36,29 @@ export function ListItem({todo, onToggle, onDelete}) {
     <li key={id} className='list-item'>
     <div>
       <label className="containerList">
-        <input type="checkbox" checked={complete} onChange={handleChange}/>
+        <input type="checkbox" checked={completed} onChange={handleChange}/>
         <div className="checkmark"></div>
       </label>
     </div>
-    <h3>{title}</h3>
+    <DashedTodo isCompleted={completed}>
+      <h3>{title}</h3>
+    </DashedTodo>
     <Button
       labelText='Delete'
       type='delete'
       onClick = {handleDelete}
     />
   </li>
-  
   )
+}
+
+function DashedTodo({children, isCompleted}) {
+  if (isCompleted) {
+    return(
+      <del>
+        {children}
+      </del>
+    )
+  }
+  return children
 }
