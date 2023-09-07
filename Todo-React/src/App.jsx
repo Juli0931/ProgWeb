@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Form, List, Filter } from './components'
+import { Form, List, Filter, Footer } from './components'
 
 export default function App () {
   const [todos, setTodos] = useState([])
@@ -48,9 +48,11 @@ export default function App () {
   }
 
   const handleFilterChange = (filterValue) => {
-    console.log(filterValue)
     setFilter(filterValue)
   }
+
+  const completedTodos = todos.filter((todo) => todo.completed)
+  const totalTodos = todos.length
 
   const filteredTodos = todos.filter((todo) => {
     if (filter === 'completed') {
@@ -72,16 +74,24 @@ export default function App () {
           currentValue={filter}
         />
         <main>
-          {
-           hasTodos
-             ? <List list={filteredTodos} onToggle={handleToggle} onDelete={handleDelete}/>
-             : <p>There are no tasks to show yet</p>
-          }
-
+          {hasTodos ? (
+            <>
+              <List list={filteredTodos} onToggle={handleToggle} onDelete={handleDelete} />
+              <Footer
+                completedTask={completedTodos.length}
+                totalTask={totalTodos}
+                onDeleteCompleted={() => {
+                  const updatedList = todos.filter((todo) => !todo.completed)
+                  setTodos(updatedList)
+                }}
+              />
+            </>
+          ) : (
+            <p>There are no tasks to show yet</p>
+          )}
         </main>
+
       </div>
     </>
   )
 }
-
-//TODO: Create a footer components that shows the number of completed tasks (x of y) and a btn to delete all the completed.
