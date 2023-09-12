@@ -1,65 +1,24 @@
-import { useState } from 'react'
 import { Form, List, Filter, Footer } from './components'
+import { useTodos } from './hooks/useTodos';
+import {filters} from "./const/filters"
+
+const initTodosValue = JSON.parse(localStorage.getItem('todos')) || [];
+const initValueFilter = localStorage.getItem('filter') || 'all';
 
 export default function App () {
-  const [todos, setTodos] = useState([])
-  const [filter, setFilter] = useState('all')
-
-  const filters = [
-    {
-      id: crypto.randomUUID(),
-      label: 'All',
-      value: 'all'
-    },
-    {
-      id: crypto.randomUUID(),
-      label: 'Completed',
-      value: 'completed'
-    },
-    {
-      id: crypto.randomUUID(),
-      label: 'Pending',
-      value: 'pending'
-    }
-  ]
-
-  const createTodo = (title) => {
-    const newTodo = {
-      id: crypto.randomUUID(),
-      title,
-      completed: false
-    }
-    setTodos(prevState =>
-      [...prevState, newTodo])
-  }
-
-  const hasTodos = todos.length > 0
-
-  const handleToggle = (data) => {
-    const updatedList = todos.map((item) =>
-      item.id === data.id ? { ...item, completed: data.completed } : item
-    );
-    setTodos(updatedList); 
-  };
-
-  const handleDelete = (id) => {
-    const updatedList = todos.filter((item) => item.id !== id );
-    setTodos(updatedList);
-  }
-
-  const handleFilterChange = (filterValue) => {
-    setFilter(filterValue)
-  }
-
-  const completedTodos = todos.filter((todo) => todo.completed)
-  const totalTodos = todos.length
-
-  const filteredTodos = todos.filter((todo) => {
-    if (filter === 'completed') {
-      return todo.completed
-    } else if (filter === 'pending') {
-      return !todo.completed
-    } return todo})
+  const {
+    filter, 
+    todos,
+    createTodo,
+    handleToggle,
+    handleDelete,
+    handleFilterChange,
+    deleteTodos,
+    filteredTodos,
+    hasTodos,
+    completedTodos,
+    totalTodos
+  } = useTodos(initTodosValue, initValueFilter)
 
   return (
     <>
@@ -80,10 +39,7 @@ export default function App () {
               <Footer
                 completedTask={completedTodos.length}
                 totalTask={totalTodos}
-                onDeleteCompleted={() => {
-                  const updatedList = todos.filter((todo) => !todo.completed)
-                  setTodos(updatedList)
-                }}
+                onDeleteCompleted={deleteTodos}
               />
             </>
           ) : (
