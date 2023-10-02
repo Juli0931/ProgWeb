@@ -31,7 +31,19 @@ export default function App () {
     }
     setTodos(prevState =>
       [...prevState, newTodo])
-  }
+    
+    // const stringifyOptions = {
+    //   exclude: ['id']
+    // }
+
+    // const stringifiedNewTodo = JSON.stringify(newTodo, stringifyOptions)
+    // localStorage.setItem('newTodo', stringifiedNewTodo)
+  };
+
+  // const stringifiedNewTodo = localStorage.getItem('newTodo');
+  // console.log(stringifiedNewTodo);
+
+  // localStorage.clear();
 
   const hasTodos = todos.length > 0
 
@@ -53,6 +65,10 @@ export default function App () {
 
   const completedTodos = todos.filter((todo) => todo.completed)
   const totalTodos = todos.length
+  const deleteTodos = () => {
+    const updatedList = todos.filter((todo) => !todo.completed)
+    setTodos(updatedList)
+  }
 
   const filteredTodos = todos.filter((todo) => {
     if (filter === 'completed') {
@@ -80,10 +96,7 @@ export default function App () {
               <Footer
                 completedTask={completedTodos.length}
                 totalTask={totalTodos}
-                onDeleteCompleted={() => {
-                  const updatedList = todos.filter((todo) => !todo.completed)
-                  setTodos(updatedList)
-                }}
+                onDeleteCompleted={deleteTodos}
               />
             </>
           ) : (
