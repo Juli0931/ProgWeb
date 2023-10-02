@@ -32,6 +32,7 @@ body {
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
+  color: #ffff;
 }
 
 #app {
@@ -68,3 +69,78 @@ main p{
   font-size: 1.2rem;
   padding: 70px;
 }
+
+/**
+ * ----------------------------------------
+ * animation fade-in-fwd
+ * ----------------------------------------
+ */
+
+#app {
+	-webkit-animation: fade-in-fwd 0.8s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+	        animation: fade-in-fwd 0.8s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+}
+
+ @-webkit-keyframes fade-in-fwd {
+  0% {
+    -webkit-transform: translateZ(-80px);
+            transform: translateZ(-80px);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: translateZ(0);
+            transform: translateZ(0);
+    opacity: 1;
+  }
+}
+@keyframes fade-in-fwd {
+  0% {
+    -webkit-transform: translateZ(-80px);
+            transform: translateZ(-80px);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: translateZ(0);
+            transform: translateZ(0);
+    opacity: 1;
+  }
+}
+
+/**
+ * ----------------------------------------
+ * animation color-change-4x
+ * ----------------------------------------
+ */
+body{
+	-webkit-animation: color-change-4x 6s linear infinite alternate both;
+	        animation: color-change-4x 6s linear infinite alternate both;
+}
+ @-webkit-keyframes color-change-4x {
+  0% {
+    background: #19dcea;
+  }
+  33.3333% {
+    background: #b22cff;
+  }
+  66.666% {
+    background: #ea2222;
+  }
+  100% {
+    background: #f5be10;
+  }
+}
+@keyframes color-change-4x {
+  0% {
+    background: #19dcea;
+  }
+  33.3333% {
+    background: #b22cff;
+  }
+  66.666% {
+    background: #ea2222;
+  }
+  100% {
+    background: #f5be10;
+  }
+}
+
