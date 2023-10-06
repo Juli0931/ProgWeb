@@ -1,0 +1,29 @@
+.firstTime {
+  padding: 3vh 4vh;
+  font-weight: 600;
+}
+
+.card {
+  margin: auto;
+  width: 40vh;
+}
+
+.catImg {
+  border-radius: 10px;
+  width: 40vh;
+  border: 3px solid white;
+}
+
+.catFact {
+  padding: 2vh 4vh 5vh;
+  font-weight: 500;
+}
+
+.error-message {
+  color: red;
+  font-weight: bold;
+  background-color: #ffe5e5;
+  padding: 10px;
+  border-radius: 10px;
+  margin: 10px 0;
+}
