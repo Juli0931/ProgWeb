@@ -1,7 +1,12 @@
-import { useState } from 'react'
 import { Form, List, Filter, Footer } from './components'
+import { useTodos } from './hooks/useTodos';
+import {filters} from "./const/filters"
+
+const initTodosValue = JSON.parse(localStorage.getItem('todos')) || [];
+const initValueFilter = localStorage.getItem('filter') || 'all';
 
 export default function App () {
+<<<<<<< HEAD
   const [todos, setTodos] = useState([])
   const [filter, setFilter] = useState('all')
 
@@ -31,7 +36,19 @@ export default function App () {
     }
     setTodos(prevState =>
       [...prevState, newTodo])
-  }
+    
+    // const stringifyOptions = {
+    //   exclude: ['id']
+    // }
+
+    // const stringifiedNewTodo = JSON.stringify(newTodo, stringifyOptions)
+    // localStorage.setItem('newTodo', stringifiedNewTodo)
+  };
+
+  // const stringifiedNewTodo = localStorage.getItem('newTodo');
+  // console.log(stringifiedNewTodo);
+
+  // localStorage.clear();
 
   const hasTodos = todos.length > 0
 
@@ -53,6 +70,10 @@ export default function App () {
 
   const completedTodos = todos.filter((todo) => todo.completed)
   const totalTodos = todos.length
+  const deleteTodos = () => {
+    const updatedList = todos.filter((todo) => !todo.completed)
+    setTodos(updatedList)
+  }
 
   const filteredTodos = todos.filter((todo) => {
     if (filter === 'completed') {
@@ -60,6 +81,21 @@ export default function App () {
     } else if (filter === 'pending') {
       return !todo.completed
     } return todo})
+=======
+  const {
+    filter, 
+    todos,
+    createTodo,
+    handleToggle,
+    handleDelete,
+    handleFilterChange,
+    deleteTodos,
+    filteredTodos,
+    hasTodos,
+    completedTodos,
+    totalTodos
+  } = useTodos(initTodosValue, initValueFilter)
+>>>>>>> c702737eca24b6b8af3aeec5a1c8c7ec43ea4984
 
   return (
     <>
@@ -80,10 +116,7 @@ export default function App () {
               <Footer
                 completedTask={completedTodos.length}
                 totalTask={totalTodos}
-                onDeleteCompleted={() => {
-                  const updatedList = todos.filter((todo) => !todo.completed)
-                  setTodos(updatedList)
-                }}
+                onDeleteCompleted={deleteTodos}
               />
             </>
           ) : (
